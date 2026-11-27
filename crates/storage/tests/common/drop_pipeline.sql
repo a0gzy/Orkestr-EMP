@@ -1,0 +1,13 @@
+DROP TABLE rollouts;
+DROP TABLE scheduler_state;
+DROP TABLE workflow_runs;
+DROP TABLE workflow_revisions;
+DROP TABLE policy_clock;
+DROP TABLE policy_history;
+DROP TABLE policies;
+DROP TABLE resource_leases;
+DROP TABLE runtime_settings;
+DROP TABLE library_jobs;
+DROP TABLE library_releases;
+DROP TABLE library_application_history;
+DROP TABLE library_applications;

@@ -1,0 +1,13 @@
+CREATE TABLE library_applications(id TEXT PRIMARY KEY, revision INTEGER NOT NULL, data TEXT NOT NULL);
+CREATE TABLE library_application_history(id TEXT NOT NULL, revision INTEGER NOT NULL, data TEXT NOT NULL, PRIMARY KEY(id,revision));
+CREATE TABLE library_releases(id TEXT PRIMARY KEY, application_id TEXT NOT NULL REFERENCES library_applications(id), application_revision INTEGER NOT NULL, state TEXT NOT NULL, data TEXT NOT NULL);
+CREATE TABLE library_jobs(id TEXT PRIMARY KEY, actor_id TEXT NOT NULL, idempotency TEXT NOT NULL, state TEXT NOT NULL, data TEXT NOT NULL, UNIQUE(actor_id,idempotency));
+CREATE TABLE runtime_settings(id INTEGER PRIMARY KEY CHECK(id=1), revision INTEGER NOT NULL, data TEXT NOT NULL);
+CREATE TABLE resource_leases(id TEXT PRIMARY KEY, site TEXT NOT NULL, phase TEXT NOT NULL, data TEXT NOT NULL);
+CREATE TABLE policies(id TEXT PRIMARY KEY, revision INTEGER NOT NULL, data TEXT NOT NULL);
+CREATE TABLE policy_history(id TEXT NOT NULL, revision INTEGER NOT NULL, actor_id TEXT NOT NULL, data TEXT NOT NULL, PRIMARY KEY(id,revision));
+CREATE TABLE policy_clock(id TEXT PRIMARY KEY REFERENCES policies(id), next_check TEXT NOT NULL, next_deploy TEXT NOT NULL);
+CREATE TABLE workflow_revisions(id TEXT PRIMARY KEY REFERENCES package_revisions(id), data TEXT NOT NULL);
+CREATE TABLE workflow_runs(id TEXT PRIMARY KEY, actor_id TEXT NOT NULL, idempotency TEXT NOT NULL, device_id TEXT NOT NULL REFERENCES devices(id), holds_device INTEGER NOT NULL CHECK(holds_device IN(0,1)), revision INTEGER NOT NULL, data TEXT NOT NULL, UNIQUE(actor_id,idempotency));
+CREATE UNIQUE INDEX workflow_device_lock ON workflow_runs(device_id) WHERE holds_device=1;
+CREATE TABLE rollouts(id TEXT PRIMARY KEY, actor_id TEXT NOT NULL, idempotency TEXT NOT NULL, revision INTEGER NOT NULL, data TEXT NOT NULL, UNIQUE(actor_id,idempotency));

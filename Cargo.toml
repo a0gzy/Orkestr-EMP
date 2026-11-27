@@ -1,0 +1,35 @@
+[workspace]
+members = ["crates/domain", "crates/inventory", "crates/storage", "crates/application", "crates/console", "crates/cli", "crates/credentials", "crates/protocol", "crates/client", "crates/server", "crates/library", "crates/scheduler"]
+resolver = "2"
+
+[workspace.package]
+version = "0.1.0"
+edition = "2021"
+publish = false
+
+[workspace.dependencies]
+orkestr-domain = { path = "crates/domain" }
+orkestr-inventory = { path = "crates/inventory" }
+orkestr-storage = { path = "crates/storage" }
+orkestr-application = { path = "crates/application" }
+orkestr-credentials = { path = "crates/credentials" }
+orkestr-protocol = { path = "crates/protocol" }
+orkestr-client = { path = "crates/client" }
+orkestr-library = { path = "crates/library" }
+orkestr-scheduler = { path = "crates/scheduler" }
+eframe = { version = "0.31.1", default-features = false, features = ["default_fonts", "glow", "accesskit", "persistence"] }
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+uuid = { version = "1", features = ["v4", "serde"] }
+chrono = { version = "0.4", features = ["serde"] }
+thiserror = "2"
+csv = "1.4"
+rusqlite = { version = "0.32", features = ["bundled", "limits"] }
+sha2 = "0.10"
+tempfile = "3"
+zeroize = { version = "1", features = ["serde"] }
+reqwest = { version = "0.12", default-features = false, features = ["blocking", "json", "rustls-tls-native-roots"] }
+
+[profile.release]
+opt-level = 2
+strip = true

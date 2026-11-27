@@ -1,0 +1,4 @@
+# GNU uses Rust's own bundled support libraries; compiler still comes from PATH.
+# No absolute paths or toolchains from the source projects are vendored here.
+[target.x86_64-pc-windows-gnu]
+rustflags = ["-C", "link-self-contained=yes"]

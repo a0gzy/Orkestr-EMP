@@ -1,0 +1,39 @@
+{
+  "application": {
+    "id": "f729987b-7c0a-44f2-befa-d5b6642bdd36",
+    "revision": 0,
+    "name": "Ассистент",
+    "channel": "stable",
+    "architecture": "x86",
+    "source": {
+      "kind": "Html",
+      "url": "https://xn--80akicokc0aablc.xn--p1ai/скачать?platformId=1",
+      "selector": "[data-platform-current-version]",
+      "attribute": null,
+      "pattern": "Актуальная версия: (?P<version>[0-9]+\\.[0-9]+)"
+    },
+    "download": {
+      "kind": "HtmlLink",
+      "page_url": "https://xn--80akicokc0aablc.xn--p1ai/скачать?platformId=1",
+      "container_selector": "[data-platform-content] .download__tab-content-item",
+      "title_selector": "h4",
+      "title": "Полная версия",
+      "link_selector": "a.button__link"
+    },
+    "network": {
+      "allowed_hosts": ["xn--80akicokc0aablc.xn--p1ai", "lk3.xn--80akicokc0aablc.xn--p1ai"],
+      "max_bytes": 268435456
+    },
+    "verification": {
+      "kind": "Authenticode",
+      "publisher": "E=admin@safib.ru, CN=SAFIB LLC, O=SAFIB LLC, L=Voronezh, S=Voronezh Oblast, C=RU"
+    },
+    "software_match": {
+      "name": "Ассистент",
+      "publisher": "САФИБ",
+      "product_code": null,
+      "version_components": 2
+    }
+  },
+  "expected": null
+}

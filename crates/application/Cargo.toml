@@ -1,0 +1,17 @@
+[package]
+name = "orkestr-application"
+version.workspace = true
+edition.workspace = true
+publish.workspace = true
+
+[dependencies]
+serde.workspace = true
+orkestr-domain.workspace = true
+orkestr-storage.workspace = true
+orkestr-protocol.workspace = true
+uuid.workspace = true
+chrono.workspace = true
+
+[dev-dependencies]
+tempfile.workspace = true
+serde_json.workspace = true
